@@ -18,17 +18,19 @@ jobs:
 
       - run: ls -l /var/cache/apt/archives
 
-      - run: dpkg -c /var/cache/apt/archives/texlive-base_2019.20200218-1_all.deb
+      # - run: dpkg -c /var/cache/apt/archives/texlive-base_2019.20200218-1_all.deb
 
-      - run: dpkg -e /var/cache/apt/archives/texlive-base_2019.20200218-1_all.deb
+      # - run: dpkg -e /var/cache/apt/archives/texlive-base_2019.20200218-1_all.deb
 
-      - run: head -n 100000 DEBIAN/*
+      # - run: head -n 100000 DEBIAN/*
 
       - run: kpsewhich fmtutil.cnf || true
 
       - run: kpsewhich -engine=pdftex pdflatex.fmt || true
 
       - run: ls -l /usr/share/texmf/web2c/fmtutil.cnf || true
+
+      - run: ls -l /var/lib/texmf/fmtutil.cnf-DEBIAN || true
 
       - run: pdflatex test.tex
 
