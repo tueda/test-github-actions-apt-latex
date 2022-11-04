@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: awalsh128/cache-apt-pkgs-action@v1.1.1
+        with:
+          packages: libmpich-dev
+          version: 1.0
+
+      - run: |
+          cmake -S . -B build
+          cmake --build build
+
+      - run: |
+          mpirun -np 4 build/test1
